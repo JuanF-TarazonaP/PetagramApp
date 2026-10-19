@@ -44,17 +44,17 @@ public class PerfilFragment extends Fragment {
     }
 
     private ArrayList<Mascota> crearFotosDummy() {
-        int[] fotos = {
-                R.drawable.mascota_6, R.drawable.mascota_1, R.drawable.mascota_2,
-                R.drawable.mascota_3, R.drawable.mascota_4, R.drawable.mascota_5,
-                R.drawable.mascota_7, R.drawable.mascota_6, R.drawable.mascota_2,
-                R.drawable.mascota_4, R.drawable.mascota_1, R.drawable.mascota_3
+        String[] fotos = {
+                "mascota_6", "mascota_1", "mascota_2",
+                "mascota_3", "mascota_4", "mascota_5",
+                "mascota_7", "mascota_6", "mascota_2",
+                "mascota_4", "mascota_1", "mascota_3"
         };
         int[] raits = {8, 5, 3, 7, 2, 9, 4, 6, 1, 3, 5, 2};
 
         ArrayList<Mascota> lista = new ArrayList<>();
         for (int i = 0; i < fotos.length; i++) {
-            lista.add(new Mascota("Nala", fotos[i], raits[i]));
+            lista.add(new Mascota(100 + i, "Nala", fotos[i], raits[i]));
         }
         return lista;
     }

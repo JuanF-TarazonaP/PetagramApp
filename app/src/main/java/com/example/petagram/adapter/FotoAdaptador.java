@@ -37,7 +37,8 @@ public class FotoAdaptador extends RecyclerView.Adapter<FotoAdaptador.FotoViewHo
     @Override
     public void onBindViewHolder(@NonNull FotoViewHolder holder, int position) {
         Mascota foto = fotos.get(position);
-        holder.imgFoto.setImageResource(foto.getFoto());
+        holder.imgFoto.setImageResource(
+                MascotaAdaptador.fotoResId(holder.itemView.getContext(), foto.getFoto()));
         holder.tvRaiting.setText(String.valueOf(foto.getRaiting()));
     }
 

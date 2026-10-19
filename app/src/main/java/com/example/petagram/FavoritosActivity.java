@@ -1,21 +1,27 @@
 package com.example.petagram;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.petagram.adapter.MascotaAdaptador;
+import com.example.petagram.db.BaseDatos;
 import com.example.petagram.pojo.Mascota;
 
 import java.util.ArrayList;
 
 /**
- * Pantalla que en el futuro guardará las últimas 5 mascotas con raiting.
- * Por ahora muestra 5 mascotas "dummy" (hardcodeadas).
+ * Muestra las últimas 5 mascotas que recibieron raiting,
+ * leídas de la base de datos SQLite.
  */
 public class FavoritosActivity extends AppCompatActivity {
+
+    private RecyclerView rvFavoritos;
+    private TextView tvVacio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,15 +34,16 @@ public class FavoritosActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
-        ArrayList<Mascota> favoritas = new ArrayList<>();
-        favoritas.add(new Mascota("Nala", R.drawable.mascota_6, 6));
-        favoritas.add(new Mascota("Luna", R.drawable.mascota_2, 5));
-        favoritas.add(new Mascota("Kira", R.drawable.mascota_4, 4));
-        favoritas.add(new Mascota("Rocky", R.drawable.mascota_1, 3));
-        favoritas.add(new Mascota("Max", R.drawable.mascota_3, 2));
-
-        RecyclerView rvFavoritos = findViewById(R.id.rvFavoritos);
+        rvFavoritos = findViewById(R.id.rvFavoritos);
+        tvVacio = findViewById(R.id.tvVacio);
         rvFavoritos.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ArrayList<Mascota> favoritas = new BaseDatos(this).obtenerUltimasMascotas();
         rvFavoritos.setAdapter(new MascotaAdaptador(favoritas, false));
+        tvVacio.setVisibility(favoritas.isEmpty() ? View.VISIBLE : View.GONE);
     }
 }

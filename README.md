@@ -28,3 +28,13 @@ mail.destino=correo_que_recibe@gmail.com
 ```
 
 Con Gmail hay que usar una **contraseña de aplicación** (Cuenta de Google → Seguridad → Verificación en 2 pasos → Contraseñas de aplicaciones).
+
+## Persistencia (SQLite)
+- El POJO `Mascota` tiene un **id único** que diferencia a cada mascota.
+- La base de datos `petagram.db` (`db/BaseDatos.java`) tiene la tabla **mascota**, idéntica al POJO: `id`, `nombre`, `foto`, `raiting`, `ultimo_raiting`.
+- Al tocar el **hueso blanco** se guardan los datos completos de la mascota y la tabla conserva solo las **últimas 5** mascotas con raiting.
+- La pantalla de la **estrella** (`FavoritosActivity`) lee esas 5 mascotas de la base de datos.
+
+![Modelo de base de datos](docs/modelo_bd.png)
+
+El script del modelo está en [`docs/modelo_bd.sql`](docs/modelo_bd.sql).

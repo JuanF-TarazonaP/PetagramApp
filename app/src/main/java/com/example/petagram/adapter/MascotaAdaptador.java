@@ -1,5 +1,6 @@
 package com.example.petagram.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.petagram.R;
+import com.example.petagram.db.BaseDatos;
 import com.example.petagram.pojo.Mascota;
 
 import java.util.ArrayList;
@@ -29,6 +31,12 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
         this.permitirRaiting = permitirRaiting;
     }
 
+    /** Convierte el nombre guardado (ej. "mascota_1") en el id del drawable. */
+    public static int fotoResId(Context context, String nombreFoto) {
+        int id = context.getResources().getIdentifier(nombreFoto, "drawable", context.getPackageName());
+        return id != 0 ? id : R.drawable.mascota_1;
+    }
+
     @NonNull
     @Override
     public MascotaViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -40,8 +48,9 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
     @Override
     public void onBindViewHolder(@NonNull MascotaViewHolder holder, int position) {
         final Mascota mascota = mascotas.get(position);
+        Context context = holder.itemView.getContext();
 
-        holder.imgFoto.setImageResource(mascota.getFoto());
+        holder.imgFoto.setImageResource(fotoResId(context, mascota.getFoto()));
         holder.tvNombre.setText(mascota.getNombre());
         holder.tvRaiting.setText(String.valueOf(mascota.getRaiting()));
 
@@ -49,6 +58,10 @@ public class MascotaAdaptador extends RecyclerView.Adapter<MascotaAdaptador.Masc
             holder.btnLike.setVisibility(View.VISIBLE);
             holder.btnLike.setOnClickListener(v -> {
                 mascota.darRaiting();
+
+                // Persistencia: se guardan los datos completos de la mascota
+                new BaseDatos(v.getContext()).guardarMascotaConRaiting(mascota);
+
                 int pos = holder.getBindingAdapterPosition();
                 if (pos != RecyclerView.NO_POSITION) {
                     notifyItemChanged(pos);

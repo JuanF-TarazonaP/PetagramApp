@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Petagram</string>
-    <string name="titulo_favoritos">Mis 5 favoritas</string>
+    <string name="titulo_favoritos">Últimas 5 con raiting</string>
+    <string name="favoritos_vacio">Aún no has dado raiting a ninguna mascota.\nToca el hueso blanco de una mascota para guardarla aquí.</string>
     <string name="menu_favoritos">Favoritos</string>
     <string name="menu_contacto">Contacto</string>
     <string name="menu_acerca">Acerca De</string>

@@ -2,17 +2,32 @@ package com.example.petagram.pojo;
 
 /**
  * DataSet: entidad POJO que representa a una mascota.
+ * La tabla "mascota" de la base de datos tiene exactamente estos mismos campos.
  */
 public class Mascota {
 
+    private int id;              // identificador único de la mascota
     private String nombre;
-    private int foto;      // recurso drawable de la foto
-    private int raiting;   // cantidad de huesos recibidos
+    private String foto;         // nombre del recurso drawable, ej. "mascota_1"
+    private int raiting;         // cantidad de huesos recibidos
+    private long ultimoRaiting;  // momento (millis) del último raiting recibido
 
-    public Mascota(String nombre, int foto, int raiting) {
+    public Mascota() {
+    }
+
+    public Mascota(int id, String nombre, String foto, int raiting) {
+        this.id = id;
         this.nombre = nombre;
         this.foto = foto;
         this.raiting = raiting;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -23,11 +38,11 @@ public class Mascota {
         this.nombre = nombre;
     }
 
-    public int getFoto() {
+    public String getFoto() {
         return foto;
     }
 
-    public void setFoto(int foto) {
+    public void setFoto(String foto) {
         this.foto = foto;
     }
 
@@ -39,8 +54,17 @@ public class Mascota {
         this.raiting = raiting;
     }
 
-    /** Suma un hueso al raiting de la mascota. */
+    public long getUltimoRaiting() {
+        return ultimoRaiting;
+    }
+
+    public void setUltimoRaiting(long ultimoRaiting) {
+        this.ultimoRaiting = ultimoRaiting;
+    }
+
+    /** Suma un hueso al raiting y registra el momento en que se dio. */
     public void darRaiting() {
         raiting++;
+        ultimoRaiting = System.currentTimeMillis();
     }
 }

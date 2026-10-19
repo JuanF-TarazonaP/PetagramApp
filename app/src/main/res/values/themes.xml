@@ -1,0 +1,11 @@
+<resources>
+    <style name="Theme.Petagram" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <item name="colorPrimary">@color/primario</item>
+        <item name="colorPrimaryVariant">@color/primario_oscuro</item>
+        <item name="colorOnPrimary">@color/blanco</item>
+        <item name="colorSecondary">@color/acento</item>
+        <item name="colorOnSecondary">@color/texto</item>
+        <item name="android:statusBarColor">@color/primario_oscuro</item>
+        <item name="android:windowBackground">@color/fondo</item>
+    </style>
+</resources>

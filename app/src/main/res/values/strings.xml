@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Petagram</string>
+    <string name="titulo_favoritos">Mis 5 favoritas</string>
+    <string name="menu_favoritos">Favoritos</string>
+    <string name="desc_foto">Foto de la mascota</string>
+    <string name="desc_like">Dar raiting</string>
+    <string name="desc_raiting">Raiting</string>
+    <string name="toast_like">Le diste un hueso a %1$s</string>
+</resources>

@@ -6,44 +6,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.petagram.adapter.MascotaAdaptador;
-import com.example.petagram.pojo.Mascota;
-
-import java.util.ArrayList;
+import com.example.petagram.adapter.PageAdapter;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ArrayList<Mascota> mascotas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RecyclerView rvMascotas = findViewById(R.id.rvMascotas);
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        ViewPager2 viewPager = findViewById(R.id.viewPager);
 
-        // LayoutManager: da forma y acomoda los ítems en una lista vertical
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        rvMascotas.setLayoutManager(llm);
+        // ViewPager con los Fragments: lista de mascotas y perfil
+        viewPager.setAdapter(new PageAdapter(this));
 
-        inicializarMascotas();
-        rvMascotas.setAdapter(new MascotaAdaptador(mascotas, true));
-    }
-
-    /** DataSet de la lista principal. */
-    private void inicializarMascotas() {
-        mascotas = new ArrayList<>();
-        mascotas.add(new Mascota("Rocky", R.drawable.mascota_1, 3));
-        mascotas.add(new Mascota("Luna", R.drawable.mascota_2, 5));
-        mascotas.add(new Mascota("Max", R.drawable.mascota_3, 2));
-        mascotas.add(new Mascota("Kira", R.drawable.mascota_4, 4));
-        mascotas.add(new Mascota("Toby", R.drawable.mascota_5, 1));
-        mascotas.add(new Mascota("Nala", R.drawable.mascota_6, 6));
-        mascotas.add(new Mascota("Simba", R.drawable.mascota_7, 0));
+        new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
+            if (position == 0) {
+                tab.setIcon(R.drawable.ic_casa);
+                tab.setText(R.string.tab_inicio);
+            } else {
+                tab.setIcon(R.drawable.ic_huella);
+                tab.setText(R.string.tab_perfil);
+            }
+        }).attach();
     }
 
     @Override
@@ -54,8 +44,15 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_favoritos) {
+        int id = item.getItemId();
+        if (id == R.id.action_favoritos) {
             startActivity(new Intent(this, FavoritosActivity.class));
+            return true;
+        } else if (id == R.id.action_contacto) {
+            startActivity(new Intent(this, ContactoActivity.class));
+            return true;
+        } else if (id == R.id.action_acerca) {
+            startActivity(new Intent(this, AcercaDeActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);

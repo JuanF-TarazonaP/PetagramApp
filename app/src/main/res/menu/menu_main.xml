@@ -8,4 +8,15 @@
         android:icon="@drawable/ic_estrella"
         android:title="@string/menu_favoritos"
         app:showAsAction="always" />
+
+    <!-- Menú de opciones (overflow ⋮) -->
+    <item
+        android:id="@+id/action_contacto"
+        android:title="@string/menu_contacto"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_acerca"
+        android:title="@string/menu_acerca"
+        app:showAsAction="never" />
 </menu>

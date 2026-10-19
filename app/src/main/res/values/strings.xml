@@ -2,8 +2,33 @@
     <string name="app_name">Petagram</string>
     <string name="titulo_favoritos">Mis 5 favoritas</string>
     <string name="menu_favoritos">Favoritos</string>
+    <string name="menu_contacto">Contacto</string>
+    <string name="menu_acerca">Acerca De</string>
+    <string name="tab_inicio">Inicio</string>
+    <string name="tab_perfil">Perfil</string>
     <string name="desc_foto">Foto de la mascota</string>
     <string name="desc_like">Dar raiting</string>
     <string name="desc_raiting">Raiting</string>
     <string name="toast_like">Le diste un hueso a %1$s</string>
+
+    <!-- Contacto -->
+    <string name="titulo_contacto">Contacto</string>
+    <string name="contacto_intro">¿Tienes un comentario sobre Petagram? Escríbenos.</string>
+    <string name="hint_nombre">Nombre</string>
+    <string name="hint_correo">Correo</string>
+    <string name="hint_mensaje">Mensaje</string>
+    <string name="btn_enviar">Enviar Comentario</string>
+    <string name="enviando">Enviando…</string>
+    <string name="error_requerido">Este campo es obligatorio</string>
+    <string name="error_correo">Ingresa un correo válido</string>
+    <string name="correo_enviado">¡Comentario enviado! Gracias por escribirnos.</string>
+    <string name="correo_error">No se pudo enviar el correo: %1$s</string>
+    <string name="correo_sin_config">Falta configurar el correo en local.properties</string>
+
+    <!-- Acerca de -->
+    <string name="titulo_acerca">Acerca De</string>
+    <string name="dev_nombre">Juan Felipe Tarazona</string>
+    <string name="dev_rol">Desarrollador Android</string>
+    <string name="dev_bio">Hola, soy Juan Felipe, estudiante del curso de Desarrollo de Aplicaciones Android en Coursera. Me apasiona crear aplicaciones útiles y con buen diseño siguiendo los lineamientos de Material Design.\n\nPetagram es una app para compartir y calificar con huesos las fotos de nuestras mascotas favoritas. En este proyecto practiqué RecyclerView, menús, Fragments, ViewPager y el envío de correos con JavaMail.</string>
+    <string name="dev_github">github.com/JuanF-TarazonaP</string>
 </resources>

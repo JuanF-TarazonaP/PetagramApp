@@ -1,23 +1,30 @@
 # Petagram
 
-Aplicación Android (Java + Material Design) que muestra una lista de mascotas con RecyclerView.
+Aplicación Android (Java + Material Design) para ver y calificar con huesos las fotos de mascotas.
 
-## Parte 1: Lista de mascotas
-- **DataSet:** `pojo/Mascota.java` (POJO con nombre, foto y raiting).
-- **Adapter:** `adapter/MascotaAdaptador.java`, que infla y recicla `cardview_mascota.xml`.
-- **ViewHolder:** `MascotaAdaptador.MascotaViewHolder` (clase anidada).
-- **LayoutManager:** `LinearLayoutManager` vertical en `MainActivity`.
-- Cada mascota tiene un **hueso blanco** para darle raiting y un **hueso amarillo** con el total de raiting.
+## Menús
+- **Action View de estrella:** abre `FavoritosActivity` con 5 mascotas dummy y botón para subir.
+- **Menú de opciones (⋮):**
+  - **Contacto:** formulario con nombre, correo y mensaje (`TextInputLayout`). El botón **Enviar Comentario** manda el correo con **JavaMail** (`ContactoActivity`).
+  - **Acerca De:** bio del desarrollador (`AcercaDeActivity`).
 
-## Parte 2: Action View de estrella
-- Ícono de estrella en la barra (`menu/menu_main.xml`) que abre `FavoritosActivity`.
-- `FavoritosActivity` muestra un RecyclerView con **5 mascotas dummy**.
-- Botón **subir** (flecha atrás) hacia el Activity padre (`parentActivityName` + `setDisplayHomeAsUpEnabled`).
+## Fragments + ViewPager
+- `MainActivity` usa un **ViewPager2** con **TabLayout** y dos pestañas:
+  - `RecyclerViewFragment`: la lista de mascotas con hueso blanco (dar raiting) y hueso amarillo (total).
+  - `PerfilFragment`: perfil de la mascota con foto redonda (**CircularImageView**), nombre y un RecyclerView en **Grid** con sus fotos y raits (datos dummy).
 
-## Cómo ejecutarla
-1. Clonar el repositorio.
-2. Abrir la carpeta en Android Studio y esperar la sincronización de Gradle.
-3. Ejecutar en un emulador o dispositivo.
+## Librerías
+- `com.sun.mail:android-mail` y `com.sun.mail:android-activation` (JavaMail)
+- `com.mikhaellopez:circularimageview`
+- AndroidX RecyclerView, ViewPager2 y Material Components
 
-> Las fotos de las mascotas son ilustraciones vectoriales (`res/drawable/mascota_1.xml` … `mascota_7.xml`).
-> Se pueden reemplazar por fotos reales con el mismo nombre (por ejemplo `mascota_1.jpg`).
+## Configurar el envío de correo
+Las credenciales **no** están en el código. Agrega estas líneas al archivo `local.properties` (en la raíz del proyecto, no se sube a GitHub):
+
+```
+mail.usuario=tucorreo@gmail.com
+mail.password=tu_contraseña_de_aplicacion
+mail.destino=correo_que_recibe@gmail.com
+```
+
+Con Gmail hay que usar una **contraseña de aplicación** (Cuenta de Google → Seguridad → Verificación en 2 pasos → Contraseñas de aplicaciones).
